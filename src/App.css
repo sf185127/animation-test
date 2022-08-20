@@ -1,0 +1,26 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:root {
+  --primary-hue: 40;
+}
+
+.fill-primary-100 {
+  fill: hsl(var(--primary-hue), 50%, 90%);
+}
+.fill-primary-300 {
+  fill: hsl(var(--primary-hue), 50%, 70%);
+}
+.fill-primary-500 {
+  fill: hsl(var(--primary-hue), 50%, 50%);
+}
+.fill-primary-700 {
+  fill: hsl(var(--primary-hue), 50%, 30%);
+}
+.fill-primary-900 {
+  fill: hsl(var(--primary-hue), 50%, 10%);
+}
