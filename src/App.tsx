@@ -44,7 +44,8 @@ const ColorController = () => {
 function App() {
   const options = {
     loop: true,
-    animationData,
+    // need an extendable object so have to destruct animation data
+    animationData: { ...animationData },
     autoplay: true,
   };
 
