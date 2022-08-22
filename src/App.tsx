@@ -6,7 +6,12 @@ import { hexToHsluv } from "hsluv";
 import { useMemo } from "react";
 import { bezier } from "@leva-ui/plugin-bezier";
 
+/**
+ * This is a component to manipulate css variables based on the inputs
+ * Uses leva internally for the control panel
+ */
 const ColorController = () => {
+  // leva control panel
   const { color, saturation, luminanceCurve } = useControls({
     color: { value: "#F00", label: "Primary Color" },
     saturation: { value: 0.5, min: 0, max: 1 },
@@ -18,11 +23,14 @@ const ColorController = () => {
     ),
   });
 
+  // pull out hue from primary collor
   const h = useMemo(() => hexToHsluv(color)[0], [color]);
 
   return (
     <style>
+      {/* create a css var based on the hue of the selected primary color */}
       {`:root { --primary-hue: ${h} }`}
+      {/* for each shade, attach a css property hsl ( primary hue var, selected saturation , shade number ) */}
       {[100, 200, 300, 400, 500, 600, 700, 800, 900].map(
         (x) =>
           `.fill-primary-${x} {fill: hsl(var(--primary-hue), ${
@@ -34,13 +42,9 @@ const ColorController = () => {
 };
 
 function App() {
-  const data = JSON.parse(
-    JSON.stringify(animationData).replace(`fill-primary-700`, `#FF0000`)
-  );
-
   const options = {
     loop: true,
-    animationData: data,
+    animationData,
     autoplay: true,
   };
 
